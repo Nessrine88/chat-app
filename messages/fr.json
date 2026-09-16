@@ -1,6 +1,6 @@
 {
-    "Homepage" : {
-        "title": "Welcome to the homepage",
-        "content": "this is the homepage"
+    "Homepage": {
+        "title": "Bienvenue sur la page d'accueil",
+        "content": "ceci est la page d'accueil"
     }
 }
