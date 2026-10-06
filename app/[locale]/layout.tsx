@@ -3,8 +3,7 @@ import "./globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import Header from "./_components/Header";
-
-
+import "@/sass/main.scss";
 
 export const metadata: Metadata = {
   title: "Create Next App",
