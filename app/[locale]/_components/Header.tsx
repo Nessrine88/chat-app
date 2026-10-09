@@ -33,7 +33,9 @@ const Header = () => {
     },
   ];
   return (
-    <header className="">
+    <header
+      className={`header ${pathname === "/en/experience" ? "header--light" : ""} `}
+    >
       <div className="header">
         <div>
           <Image
@@ -45,7 +47,7 @@ const Header = () => {
           />
         </div>
         <div>
-          <ul  className="header__nav ">
+          <ul className="header__nav ">
             {navItems.map((item, index) => (
               <li key={index}>
                 <Link href={item.slug}>

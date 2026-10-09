@@ -1,22 +1,52 @@
-import Image from 'next/image'
-import React from 'react'
+import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 
-const InfoBlock = ({data}:any) => {
-    const {headline, text, button,reversed} = data
-  return (
-    <div className= {`info ${reversed ? "info--reversed": ""} `}>
-        
-<Image className='info__image' src= { '/info-blocks/rectangle.png'} width={500} height={500} alt="Hero home image" />
-        
-       
-                    
-    <div className="info__text">
-        <h2 className='info__headline'>{headline} </h2>
-        <p className='copy'>{text} </p>
-        <button className="btn btn--medium btn--turquoise">{button} </button>
-    </div>
-    </div>
-  )
+interface InfoBlockProps {
+  data: {
+    headline?: string;
+    text?: string | { text?: string };
+    button?: string | { text?: string };
+    showImageRight?: boolean;
+    imageSrc?: string;
+  };
 }
 
-export default InfoBlock
+const InfoBlock = ({ data }: InfoBlockProps) => {
+  const { headline, text, button, showImageRight, imageSrc } = data;
+
+  const markdownText =
+    typeof text === "string" ? text : text?.text ?? "";
+
+  const buttonText =
+    typeof button === "string" ? button : button?.text ?? "";
+
+  return (
+    <div className={`info ${showImageRight ? "info--reversed" : ""}`}>
+      <Image
+        className="info__image"
+        src={imageSrc || "/info-blocks/rectangle.png"}
+        width={500}
+        height={400}
+        alt={headline || "Information block"}
+        sizes="(max-width: 768px) 100vw, 48vw"
+      />
+
+      <div className="info__text">
+        {headline && <h2 className="info__headline">{headline}</h2>}
+
+        <div className="copy">
+          <ReactMarkdown>{markdownText}</ReactMarkdown>
+        </div>
+
+        {buttonText && (
+          <button className="btn btn--medium btn--turquoise">
+            {buttonText}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default InfoBlock;
+
