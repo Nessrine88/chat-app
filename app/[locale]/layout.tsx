@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import Header from "./_components/Header";
 import "@/sass/main.scss";
+import Footer from "./_components/Footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,9 +22,10 @@ export default async function RootLayout({
 
         suppressHydrationWarning
       >
-        <body className="min-h-full flex flex-col">
+        <body className="min-h-screen flex flex-col justify-between ">
           <Header />
           {children}
+          <Footer />
         </body>
       </html>
     </NextIntlClientProvider>
